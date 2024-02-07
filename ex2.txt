@@ -1,0 +1,70 @@
+mysql> create database centre_formation;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use centre_formation;
+Database changed
+mysql> create table ETUDIANT(
+    -> nom_CINEtu VARCHAR(10)
+    -> ,
+    -> nomEtu VARCHAR(45),
+    -> prenomEtu VARCHAR(45),
+    -> dateNaissance DATE,
+    -> adressEtu VARCHAR(45),
+    -> villeEtu VARCHAR(45),
+    -> niveauEtu VARCHAR(45)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Inscription(
+    -> codeSess INT,
+    -> nom_CINEtu VARCHAR(10),
+    -> typeCours VARCHAR(45)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table SESSION(
+    -> codeSess INT,
+    -> nomSess VARCHAR(45),
+    -> dateDebut DATE,
+    -> dateFin VARCHAR(45)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table Formation(
+    -> codeForm INT,
+    -> titreForm VARCHAR(45),
+    -> dureeForm DOUBLE,
+    -> prixForm DOUBLE,
+    -> SESSION_codeSess INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Catalogue(
+    -> codeSpec INT,
+    -> codeForm INT
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table SPECIALITE(
+    -> codeSpec INT,
+    -> nomSpec VARCHAR(45),
+    -> descSpec VARCHAR(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> alter table Inscription
+    -> modify typeCours VARCHAR(45) not null;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table SESSION
+    -> add constraint date_check check (dateFin > dateDebut);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table SPECIALITE
+    -> ADD Active BOOLEAN;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
